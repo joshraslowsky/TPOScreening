@@ -1,15 +1,20 @@
 package testing.api;
 
 import java.util.HashMap;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
+
+import org.apache.hc.client5.http.classic.HttpClient;
+import org.apache.hc.client5.http.classic.methods.HttpDelete;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.classic.methods.HttpPut;
+import org.apache.hc.client5.http.impl.classic.BasicHttpClientResponseHandler;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.http.ClassicHttpResponse;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.json.JSONObject;
 
 
@@ -35,11 +40,12 @@ public class Rest {
      */
     public static int sendGetRequest(String url) throws Exception {
 
-		 HttpClient httpClient = HttpClientBuilder.create().build();
+    	 CloseableHttpClient  httpClient = HttpClientBuilder.create().build();
 	     HttpGet request = new HttpGet(url);
 
-	     HttpResponse response = httpClient.execute(request);
-	     return response.getStatusLine().getStatusCode();
+	
+	     ClassicHttpResponse response = (ClassicHttpResponse)httpClient.execute(request);
+	     return response.getCode();
 
 	}
     
@@ -57,7 +63,7 @@ public class Rest {
 	     HttpDelete request = new HttpDelete(url);
 
 	     HttpResponse response = httpClient.execute(request);
-	     return response.getStatusLine().getStatusCode();
+	     return response.getCode();
     }
     
 
@@ -83,7 +89,7 @@ public class Rest {
 	     request.addHeader("content-type", "application/json");
 
 	     HttpResponse response = httpClient.execute(request);
-	     return response.getStatusLine().getStatusCode();
+	     return response.getCode();
 
 	}
     
@@ -108,7 +114,7 @@ public class Rest {
 	     request.addHeader("content-type", "application/json");
 
 	     HttpResponse response = httpClient.execute(request);
-	     return response.getStatusLine().getStatusCode();
+	     return response.getCode();
 	}
     
     /**
