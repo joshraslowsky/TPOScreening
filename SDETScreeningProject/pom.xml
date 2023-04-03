@@ -78,5 +78,21 @@
 		    <scope>test</scope>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity-engine-core -->
+<dependency>
+    <groupId>org.apache.velocity</groupId>
+    <artifactId>velocity-engine-core</artifactId>
+    <version>2.3</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+<dependency>
+    <groupId>org.hsqldb</groupId>
+    <artifactId>hsqldb</artifactId>
+    <version>2.7.1</version>
+    <scope>test</scope>
+</dependency>
+
+
 </dependencies>
 </project>
