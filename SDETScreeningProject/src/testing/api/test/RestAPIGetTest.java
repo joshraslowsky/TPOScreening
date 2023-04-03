@@ -10,7 +10,7 @@ public class RestAPIGetTest extends BaseTest{
   @Test
   public void RestAPIConnectionTest() {
 		try {
-			 int orderNumber = 5;
+			 int orderNumber = 1;
 			 Assert.assertEquals(Rest.sendGetRequest("https://petstore.swagger.io/v2/store/order/" + orderNumber),
 					 200, "Succesfully Verified Get Request");
 		} catch (Exception e) {

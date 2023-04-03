@@ -2,6 +2,7 @@ package testing.api;
 
 import java.util.HashMap;
 
+import org.apache.hc.client5.http.HttpResponseException;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
@@ -42,9 +43,9 @@ public class Rest {
 
     	 CloseableHttpClient  httpClient = HttpClientBuilder.create().build();
 	     HttpGet request = new HttpGet(url);
+	     ClassicHttpResponse response;
 
-	
-	     ClassicHttpResponse response = (ClassicHttpResponse)httpClient.execute(request);
+	     response= httpClient.execute(request, new CustomHttpClientResponseHandler());
 	     return response.getCode();
 
 	}
@@ -62,8 +63,11 @@ public class Rest {
 		 HttpClient httpClient = HttpClientBuilder.create().build();
 	     HttpDelete request = new HttpDelete(url);
 
-	     HttpResponse response = httpClient.execute(request);
+	     ClassicHttpResponse response;
+
+	     response= httpClient.execute(request, new CustomHttpClientResponseHandler());
 	     return response.getCode();
+
     }
     
 
@@ -88,8 +92,11 @@ public class Rest {
 	     request.setEntity(entity);
 	     request.addHeader("content-type", "application/json");
 
-	     HttpResponse response = httpClient.execute(request);
+	     ClassicHttpResponse response;
+
+	     response= httpClient.execute(request, new CustomHttpClientResponseHandler());
 	     return response.getCode();
+
 
 	}
     
@@ -113,8 +120,11 @@ public class Rest {
 	     request.setEntity(entity);
 	     request.addHeader("content-type", "application/json");
 
-	     HttpResponse response = httpClient.execute(request);
+	     ClassicHttpResponse response;
+
+	     response= httpClient.execute(request, new CustomHttpClientResponseHandler());
 	     return response.getCode();
+
 	}
     
     /**
